@@ -21,7 +21,7 @@ if [ -n "$DB_HOST" ]; then
 fi
 
 # Gera chave da aplicação se necessário
-if [ -z "$APP_KEY" ] || [ "$APP_KEY" = "base64:..." ]; then
+if [ -z "$APP_KEY" ] || [ "$APP_KEY" = "base64:..." ] || [ "$APP_KEY" = "localhost" ]; then
     php artisan key:generate --force --quiet 2>/dev/null || true
 fi
 
