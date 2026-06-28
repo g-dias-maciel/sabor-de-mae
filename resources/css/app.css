@@ -1,0 +1,361 @@
+@import "tailwindcss";
+
+/* ===== Tipografia ===== */
+/* Caveat: manuscrita e rustica para titulos (como a logo) */
+/* Nunito: sans-serif moderna, redonda e amigavel para corpo */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Nunito:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&display=swap');
+
+@theme {
+    /* Paleta de Cores - Extraida da Logo Sabor de Mae */
+    --color-cream: #FEFAF5;
+    --color-cream-dark: #F5EDE0;
+    --color-cream-darker: #EDE0CF;
+    --color-terracotta: #C67B5C;
+    --color-terracotta-dark: #B56748;
+    --color-terracotta-darker: #9E5238;
+    --color-terracotta-light: #F0D5C8;
+    --color-terracotta-lighter: #F8EBE4;
+    --color-olive: #7D8A5A;
+    --color-olive-dark: #6B7A4A;
+    --color-olive-darker: #57613B;
+    --color-olive-light: #E6EBDA;
+    --color-olive-lighter: #F3F5ED;
+    --color-brown: #4A3222;
+    --color-brown-light: #7A6255;
+    --color-brown-lighter: #B8A599;
+    --color-brown-dark: #2E1F14;
+
+    /* Fontes */
+    --font-hand: 'Caveat', cursive;
+    --font-body: 'Nunito', sans-serif;
+}
+
+/* ===== Estilos Base ===== */
+body {
+    font-family: var(--font-body);
+    color: var(--color-brown);
+    background-color: var(--color-cream);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Textura de linho sutil no fundo — toque artesanal */
+.bg-linen {
+    background-color: var(--color-cream);
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(198, 123, 92, 0.015) 2px,
+            rgba(198, 123, 92, 0.015) 4px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 2px,
+            rgba(198, 123, 92, 0.01) 2px,
+            rgba(198, 123, 92, 0.01) 4px
+        );
+}
+
+/* ===== Tipografia ===== */
+.font-hand {
+    font-family: var(--font-hand);
+}
+
+.font-body {
+    font-family: var(--font-body);
+}
+
+h1, h2, h3 {
+    font-family: var(--font-body);
+    font-weight: 700;
+    color: var(--color-brown-dark);
+}
+
+/* Titulos principais com a fonte manuscrita */
+.title-hand {
+    font-family: var(--font-hand);
+    font-weight: 700;
+    color: var(--color-brown-dark);
+    line-height: 1.2;
+}
+
+/* ===== Elementos Decorativos ===== */
+
+/* Divisor de folhas — raminho decorativo */
+.leaf-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 2rem 0;
+    color: var(--color-olive);
+    opacity: 0.7;
+}
+
+.leaf-divider::before,
+.leaf-divider::after {
+    content: '';
+    flex: 1;
+    max-width: 80px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--color-olive), transparent);
+}
+
+/* Borda artesanal — levemente irregular */
+.border-artisan {
+    border: 2px solid var(--color-cream-darker);
+    border-radius: 2px 20px 2px 20px;
+    box-shadow:
+        2px 2px 0px var(--color-terracotta-light),
+        inset 0 0 0 1px rgba(198, 123, 92, 0.08);
+}
+
+/* Card de produto estilo artesanal */
+.card-artisan {
+    background: #fff;
+    border-radius: 8px 24px 8px 24px;
+    border: 1.5px solid var(--color-cream-darker);
+    box-shadow:
+        3px 3px 0px rgba(198, 123, 92, 0.12),
+        0 4px 16px rgba(74, 50, 34, 0.06);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.card-artisan:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        4px 6px 0px rgba(198, 123, 92, 0.18),
+        0 8px 24px rgba(74, 50, 34, 0.1);
+    border-color: var(--color-terracotta-light);
+}
+
+/* Faixa decorativa superior do card (simula fita/pano) */
+.card-artisan::before {
+    content: '';
+    display: block;
+    height: 5px;
+    background: linear-gradient(
+        90deg,
+        var(--color-terracotta),
+        var(--color-terracotta-light),
+        var(--color-olive),
+        var(--color-olive-light),
+        var(--color-terracotta-light),
+        var(--color-terracotta)
+    );
+    opacity: 0.7;
+}
+
+/* ===== Botoes ===== */
+
+/* Botao primario — Terracotta */
+.btn-terracotta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--color-terracotta), var(--color-terracotta-dark));
+    color: #fff;
+    font-family: var(--font-body);
+    font-weight: 700;
+    border: none;
+    border-radius: 12px;
+    padding: 0.75rem 1.75rem;
+    font-size: 1.125rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 3px 12px rgba(198, 123, 92, 0.35);
+}
+
+.btn-terracotta:hover {
+    background: linear-gradient(135deg, var(--color-terracotta-darker), var(--color-terracotta-dark));
+    box-shadow: 0 5px 18px rgba(198, 123, 92, 0.45);
+    transform: translateY(-1px);
+}
+
+.btn-terracotta:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(198, 123, 92, 0.3);
+}
+
+/* Botao secundario — Olive */
+.btn-olive {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--color-olive), var(--color-olive-dark));
+    color: #fff;
+    font-family: var(--font-body);
+    font-weight: 700;
+    border: none;
+    border-radius: 12px;
+    padding: 0.75rem 1.75rem;
+    font-size: 1.125rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 3px 12px rgba(125, 138, 90, 0.3);
+}
+
+.btn-olive:hover {
+    background: linear-gradient(135deg, var(--color-olive-darker), var(--color-olive-dark));
+    box-shadow: 0 5px 18px rgba(125, 138, 90, 0.4);
+    transform: translateY(-1px);
+}
+
+/* Botao outline */
+.btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--color-terracotta);
+    font-family: var(--font-body);
+    font-weight: 700;
+    border: 2px solid var(--color-terracotta);
+    border-radius: 12px;
+    padding: 0.65rem 1.65rem;
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-outline:hover {
+    background: var(--color-terracotta-lighter);
+    border-color: var(--color-terracotta-dark);
+}
+
+/* Botao ghost (apenas texto) */
+.btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    color: var(--color-brown-light);
+    font-family: var(--font-body);
+    font-weight: 600;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.btn-ghost:hover {
+    color: var(--color-brown-dark);
+}
+
+/* ===== Inputs e Forms ===== */
+.input-warm {
+    width: 100%;
+    border: 2px solid var(--color-cream-darker);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    color: var(--color-brown);
+    background: #fff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-warm:focus {
+    outline: none;
+    border-color: var(--color-terracotta);
+    box-shadow: 0 0 0 3px rgba(198, 123, 92, 0.12);
+}
+
+.input-warm::placeholder {
+    color: var(--color-brown-lighter);
+}
+
+/* ===== Tags / Badges ===== */
+.badge-terracotta {
+    display: inline-flex;
+    align-items: center;
+    background: var(--color-terracotta-lighter);
+    color: var(--color-terracotta-darker);
+    font-weight: 700;
+    font-size: 0.875rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    border: 1px solid var(--color-terracotta-light);
+}
+
+/* ===== Navbar ===== */
+.navbar-warm {
+    background: linear-gradient(135deg, #FEF9F4, #FDF5EE);
+    border-bottom: 3px solid var(--color-cream-darker);
+    box-shadow: 0 2px 16px rgba(74, 50, 34, 0.06);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    backdrop-filter: blur(8px);
+}
+
+/* ===== Footer ===== */
+.footer-warm {
+    background: linear-gradient(180deg, var(--color-cream-dark), #F0E5D4);
+    border-top: 3px solid var(--color-cream-darker);
+    color: var(--color-brown);
+}
+
+/* ===== Elementos de Folhas Decorativas (SVG inline ou emoji) ===== */
+.leaf-accent {
+    display: inline-block;
+    color: var(--color-olive);
+    opacity: 0.6;
+    font-size: 1.2em;
+}
+
+/* ===== Loading / Spinner ===== */
+.spinner-terracotta {
+    width: 24px;
+    height: 24px;
+    border: 3px solid var(--color-terracotta-light);
+    border-top-color: var(--color-terracotta);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ===== Impressao ===== */
+@media print {
+    nav, .print\:hidden, .leaf-divider { display: none !important; }
+    body { background: #fff; color: #000; font-size: 12pt; }
+    .card-artisan, .border-artisan { box-shadow: none; border: 1px solid #ccc; }
+}
+
+/* ===== Scrollbar customizada ===== */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-cream);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-cream-darker);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-brown-lighter);
+}
+
+/* ===== Animações ===== */
+.fade-in {
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}

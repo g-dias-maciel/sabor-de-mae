@@ -1,0 +1,6 @@
+node_modules/
+vendor/
+storage/
+public/build/
+.git/
+*.sqlite
