@@ -33,6 +33,11 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/produtos', ProductManager::class)->name('admin.products');
 });
 
+// Health check (Docker)
+Route::get('/health', function () {
+    return response()->json(['status' => 'ok', 'timestamp' => now()->toIso8601String()]);
+});
+
 // Webhook Mercado Pago (sem CSRF — configurado em bootstrap/app.php)
 Route::post('/webhooks/mercadopago', \App\Http\Controllers\MercadoPagoWebhookController::class);
 
