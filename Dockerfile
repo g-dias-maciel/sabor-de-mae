@@ -21,10 +21,10 @@ FROM node:20-alpine AS assets
 WORKDIR /app
 
 COPY package.json package-lock.json vite.config.js ./
-RUN npm ci 2>/dev/null || npm install
+RUN npm ci 2>/dev/null || npm install 2>/dev/null || true
 
 COPY resources/ resources/
-RUN npm run build 2>/dev/null || true
+RUN npm run build
 
 # ==============================================
 # Estágio 3: Imagem Final
