@@ -50,6 +50,9 @@ RUN apk add --no-cache \
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" && \
     sed -i 's/memory_limit = .*/memory_limit = 256M/' "$PHP_INI_DIR/php.ini"
 
+# PHP-FPM: mantém variáveis de ambiente nos workers (necessário para Coolify)
+RUN sed -i 's/^;clear_env = yes/clear_env = no/' "$PHP_INI_DIR/../php-fpm.d/www.conf"
+
 # Nginx config
 COPY docker/nginx/default.conf /etc/nginx/http.d/default.conf
 

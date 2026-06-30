@@ -20,9 +20,11 @@ if [ -n "$DB_HOST" ]; then
     echo ">>> Banco de dados disponível!"
 fi
 
-# Gera chave da aplicação se necessário
+# Gera chave da aplicação se necessário (Coolify não usa .env — injeta env vars diretamente)
 if [ -z "$APP_KEY" ] || [ "$APP_KEY" = "base64:..." ] || [ "$APP_KEY" = "localhost" ]; then
-    php artisan key:generate --force --quiet 2>/dev/null || true
+    echo ">>> Gerando APP_KEY..."
+    APP_KEY=$(php -r "echo 'base64:' . base64_encode(random_bytes(32));")
+    export APP_KEY
 fi
 
 # Executa migrations
