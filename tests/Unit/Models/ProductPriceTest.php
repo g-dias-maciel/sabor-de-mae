@@ -50,5 +50,5 @@ test('product price label retorna descricao legivel', function () {
 test('product price shortLabel retorna label curto', function () {
     $priceP = ProductPrice::factory()->sizeP()->create();
 
-    expect($priceP->shortLabel())->toBe('Pequena');
+    expect($priceP->shortLabel())->toContain('Pequena (500g)');
 });

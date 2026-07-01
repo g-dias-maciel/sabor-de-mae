@@ -27,8 +27,8 @@ test('checkout exibe erro sem endereco de entrega', function () {
 
     $menu = Menu::factory()->create([
         'status' => 'aberto',
-        'start_date' => now()->startOfWeek(),
-        'end_date' => now()->endOfWeek(),
+        'start_date' => now()->startOfWeek()->addWeek(),
+        'end_date' => now()->endOfWeek()->addWeek(),
     ]);
     $product = Product::factory()->withSinglePrice(25.00)->create();
     $menu->products()->attach($product->id);
@@ -73,8 +73,8 @@ test('checkout processa pedido com sucesso via pix', function () {
 
     $menu = Menu::factory()->create([
         'status' => 'aberto',
-        'start_date' => now()->startOfWeek(),
-        'end_date' => now()->endOfWeek(),
+        'start_date' => now()->startOfWeek()->addWeek(),
+        'end_date' => now()->endOfWeek()->addWeek(),
     ]);
     $product = Product::factory()->withSinglePrice(20.00)->create();
     $menu->products()->attach($product->id);
@@ -113,8 +113,8 @@ test('checkout processa pedido com sucesso via dinheiro', function () {
 
     $menu = Menu::factory()->create([
         'status' => 'aberto',
-        'start_date' => now()->startOfWeek(),
-        'end_date' => now()->endOfWeek(),
+        'start_date' => now()->startOfWeek()->addWeek(),
+        'end_date' => now()->endOfWeek()->addWeek(),
     ]);
     $product = Product::factory()->withSinglePrice(20.00)->create();
     $menu->products()->attach($product->id);
@@ -161,8 +161,8 @@ test('checkout pix exibe qr code e copia-cola no modal', function () {
 
     $menu = Menu::factory()->create([
         'status' => 'aberto',
-        'start_date' => now()->startOfWeek(),
-        'end_date' => now()->endOfWeek(),
+        'start_date' => now()->startOfWeek()->addWeek(),
+        'end_date' => now()->endOfWeek()->addWeek(),
     ]);
     $product = Product::factory()->withSinglePrice(30.00)->create();
     $menu->products()->attach($product->id);
@@ -216,8 +216,8 @@ test('checkout pix polling confirma pagamento automaticamente', function () {
 
     $menu = Menu::factory()->create([
         'status' => 'aberto',
-        'start_date' => now()->startOfWeek(),
-        'end_date' => now()->endOfWeek(),
+        'start_date' => now()->startOfWeek()->addWeek(),
+        'end_date' => now()->endOfWeek()->addWeek(),
     ]);
     $product = Product::factory()->withSinglePrice(30.00)->create();
     $menu->products()->attach($product->id);
@@ -274,8 +274,8 @@ test('checkout pix falha graciosamente quando MercadoPago esta indisponivel', fu
 
     $menu = Menu::factory()->create([
         'status' => 'aberto',
-        'start_date' => now()->startOfWeek(),
-        'end_date' => now()->endOfWeek(),
+        'start_date' => now()->startOfWeek()->addWeek(),
+        'end_date' => now()->endOfWeek()->addWeek(),
     ]);
     $product = Product::factory()->withSinglePrice(20.00)->create();
     $menu->products()->attach($product->id);

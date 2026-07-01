@@ -63,7 +63,7 @@
                             $hasSizes = $product->hasSizes();
                         @endphp
                         <div class="card-artisan flex flex-col p-0">
-                            <div class="p-5 flex flex-col flex-1">
+                            <div class="p-5 flex flex-col flex-1" x-data="{ size: null }">
                                 {{-- Nome do prato --}}
                                 <h3 class="text-lg font-extrabold text-brown-dark leading-snug mb-2">
                                     {{ $product->name }}
@@ -95,13 +95,43 @@
                                     </div>
                                 @endif
 
+                                {{-- Extras do dia --}}
+                                @if(count($grouped['extrasDoDia'][$dia] ?? []) > 0 && $menu->aceitaPedidos())
+                                    <div class="mb-3">
+                                        <p class="text-xs font-bold text-brown-lighter uppercase tracking-wide mb-2">
+                                            🥤 Adicionar extra
+                                        </p>
+                                        <div class="space-y-2">
+                                            @foreach($grouped['extrasDoDia'][$dia] as $extra)
+                                                <div class="flex items-center justify-between bg-cream rounded-xl p-3 border border-cream-darker">
+                                                    <div class="flex-1 min-w-0">
+                                                        <p class="text-sm font-bold text-brown-dark truncate">{{ $extra->name }}</p>
+                                                        <p class="text-xs text-brown-light">{{ $extra->description }}</p>
+                                                    </div>
+                                                    <div class="flex items-center gap-2 ml-2">
+                                                        <span class="text-terracotta font-extrabold text-sm whitespace-nowrap">
+                                                            R$ {{ number_format($extra->getPriceForSize('M'), 2, ',', '.') }}
+                                                        </span>
+                                                        <button
+                                                            wire:click="addToCart({{ $extra->id }})"
+                                                            class="btn-olive text-xs py-1.5 px-3 whitespace-nowrap"
+                                                        >
+                                                            + Add
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                @endif
+
                                 {{-- Seletor de Tamanho + Preços --}}
                                 @if($hasSizes)
                                     <div class="mb-4">
                                         <p class="text-xs font-bold text-brown-lighter uppercase tracking-wide mb-2">
                                             🥡 Tamanho da porção
                                         </p>
-                                        <div class="grid grid-cols-2 gap-2" x-data="{ size: null }">
+                                        <div class="grid grid-cols-2 gap-2">
                                             @foreach($product->prices as $productPrice)
                                                 @php
                                                     $isAvailable = collect($availableSizes)->contains(fn($p) => $p->size === $productPrice->size);

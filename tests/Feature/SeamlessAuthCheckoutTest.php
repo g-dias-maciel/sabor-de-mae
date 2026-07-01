@@ -40,8 +40,8 @@ test('guest pode se cadastrar durante o checkout', function () {
 
     $menu = Menu::factory()->create([
         'status' => 'aberto',
-        'start_date' => now()->startOfWeek(),
-        'end_date' => now()->endOfWeek(),
+        'start_date' => now()->startOfWeek()->addWeek(),
+        'end_date' => now()->endOfWeek()->addWeek(),
     ]);
     $product = Product::factory()->withSinglePrice(25.00)->create();
     $menu->products()->attach($product->id);

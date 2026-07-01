@@ -149,15 +149,21 @@ class ProductList extends Component
 
         // Saladas — se houver salada no cardápio, disponível em todos os dias
         $todasSaladas = collect();
+        $todosExtras = collect();
         foreach ($products as $product) {
             if ($product->isSalada()) {
                 $todasSaladas->push($product);
             }
+            if ($product->isExtra()) {
+                $todosExtras->push($product);
+            }
         }
         // Mapeia para todos os dias que têm refeição
         $saladasPorDia = [];
+        $extrasDoDia = [];
         foreach ($refeicoesPorDia as $dia => $_) {
             $saladasPorDia[$dia] = $todasSaladas;
+            $extrasDoDia[$dia] = $todosExtras;
         }
 
         // Pacote semanal
@@ -169,6 +175,7 @@ class ProductList extends Component
         return [
             'refeicoes' => $groupedRefeicoes,
             'saladasPorDia' => $saladasPorDia,
+            'extrasDoDia' => $extrasDoDia,
             'pacotes' => $pacotes,
             'extras' => $extras,
         ];
