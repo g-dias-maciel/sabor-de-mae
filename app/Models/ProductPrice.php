@@ -33,9 +33,9 @@ class ProductPrice extends Model
     public function label(): string
     {
         return match ($this->size) {
-            'P' => 'Pequena (~500g)',
+            'P' => 'Pequena (500g)',
             'M' => 'Média',
-            'G' => 'Grande (~750g)',
+            'G' => 'Grande (750g)',
             default => $this->size,
         };
     }
@@ -46,9 +46,9 @@ class ProductPrice extends Model
     public function shortLabel(): string
     {
         return match ($this->size) {
-            'P' => 'Pequena',
+            'P' => 'Pequena (500g)',
             'M' => 'Único',
-            'G' => 'Grande',
+            'G' => 'Grande (750g)',
             default => $this->size,
         };
     }

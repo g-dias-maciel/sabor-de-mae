@@ -48,7 +48,9 @@
                                         <span class="font-bold text-brown-dark">{{ $item->quantity }}x</span>
                                         <span class="text-brown-light ml-1">{{ $item->product?->name ?? 'Produto' }}</span>
                                         @if($item->size && $item->size !== 'M')
-                                            <span class="text-xs text-terracotta font-bold ml-1">({{ $item->size }})</span>
+                                            <span class="text-xs text-terracotta font-bold ml-1">
+                                                ({{ $item->size === 'P' ? '500g' : '750g' }})
+                                            </span>
                                         @endif
                                     </div>
                                     <span class="font-bold text-brown-dark text-sm">
@@ -146,7 +148,7 @@
                                     <div class="flex justify-between">
                                         <span>{{ $item->quantity }}x {{ $item->product?->name ?? 'Produto' }}
                                             @if($item->size && $item->size !== 'M')
-                                                ({{ $item->size }})
+                                                ({{ $item->size === 'P' ? '500g' : '750g' }})
                                             @endif
                                         </span>
                                     </div>

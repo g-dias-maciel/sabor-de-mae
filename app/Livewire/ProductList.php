@@ -147,13 +147,17 @@ class ProductList extends Component
             ];
         }
 
-        // Saladas agrupadas por dia
-        $saladasPorDia = [];
+        // Saladas — se houver salada no cardápio, disponível em todos os dias
+        $todasSaladas = collect();
         foreach ($products as $product) {
             if ($product->isSalada()) {
-                $dia = $product->pivot->day_of_week ?? 0;
-                $saladasPorDia[$dia][] = $product;
+                $todasSaladas->push($product);
             }
+        }
+        // Mapeia para todos os dias que têm refeição
+        $saladasPorDia = [];
+        foreach ($refeicoesPorDia as $dia => $_) {
+            $saladasPorDia[$dia] = $todasSaladas;
         }
 
         // Pacote semanal
