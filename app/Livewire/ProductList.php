@@ -18,7 +18,7 @@ class ProductList extends Component
 
     public function mount(): void
     {
-        $this->menu = Menu::ativo()->with('products')->first();
+        $this->menu = Menu::proximaSemana()->with('products')->first();
 
         // Restaura carrinho da sessão (persiste entre navegações)
         if (session()->has('checkout_cart')) {

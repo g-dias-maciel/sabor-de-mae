@@ -58,6 +58,21 @@ class Menu extends Model
     }
 
     /**
+     * Scope para encontrar o cardápio da PRÓXIMA semana (pré-venda).
+     * Clientes sempre veem o cardápio da semana seguinte, para fazer
+     * pedidos com antecedência.
+     *
+     * Exemplo: quarta-feira 01/07 → mostra o menu que inicia segunda 06/07.
+     */
+    public function scopeProximaSemana($query)
+    {
+        $proximaSegunda = now()->copy()->startOfWeek()->addWeek()->toDateString();
+
+        return $query->where('status', 'aberto')
+            ->whereDate('start_date', $proximaSegunda);
+    }
+
+    /**
      * Verifica se o menu atual aceita novos pedidos.
      * Pedidos só são aceitos até sábado 23:59.
      */

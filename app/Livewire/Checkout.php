@@ -271,7 +271,7 @@ class Checkout extends Component
 
         try {
             $service = app(CheckoutService::class);
-            $menu = Menu::ativo()->firstOrFail();
+            $menu = Menu::proximaSemana()->firstOrFail();
 
             $items = array_map(function ($item) {
                 return [
